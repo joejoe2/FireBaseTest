@@ -59,13 +59,13 @@ public class FireBaseTest extends JFrame{
         timer1=new Timer(5000,(e) -> {
             if(list1.size()>=4){
             list1.pollFirst();
-            list1.add(LocalDateTime.now().toString());
+            list1.add(LocalDateTime.now().toString().split("[.]")[0]);
             sensor1.put("t0",list1.get(0));
             sensor1.put("t1",list1.get(1));
             sensor1.put("t2",list1.get(2));
             sensor1.put("t3",list1.get(3));
             }else{
-                list1.add(LocalDateTime.now().toString());
+                list1.add(LocalDateTime.now().toString().split("[.]")[0]);
                 sensor1.put("t"+(list1.size()-1),list1.peekLast());
             }
             myFirebaseRef.child("/sensor1").updateChildren(sensor1);
@@ -92,7 +92,7 @@ public class FireBaseTest extends JFrame{
     public static void main(String[] args) {
         // TODO code application logic here
         new FireBaseTest();
-        
+        System.out.println(LocalDateTime.now().toString().split("[.]")[0]);
     }
     
 }
